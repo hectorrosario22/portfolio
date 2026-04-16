@@ -1,9 +1,20 @@
 {
   "categories": [
     { "id": "all", "name": "All" },
+    { "id": "backend", "name": "Backend / API" },
     { "id": "cli", "name": "CLI" }
   ],
   "items": [
+    {
+      "id": 0,
+      "title": "Notify Hub",
+      "description": "Backend microservice for sending notifications across Push, Email, SMS, and WhatsApp channels. Features real-time delivery with SignalR.",
+      "image": "/images/projects/notify-hub.png",
+      "category": ["backend"],
+      "technologies": ["C#", "ASP.NET Core", "SignalR", "Microservices"],
+      "githubUrl": "https://github.com/hectorrosario22/notify-hub",
+      "demoUrl": "https://notifyhub.hrosario.dev"
+    },
     {
       "id": 1,
       "title": "Expense Tracker",

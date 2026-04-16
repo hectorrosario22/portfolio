@@ -55,7 +55,7 @@ const projectSchema = z.object({
   id: z.number(),
   title: z.string(),
   description: z.string(),
-  image: z.string(),
+  image: z.string().nullable(),
   category: z.array(z.string()),
   technologies: z.array(z.string()),
   githubUrl: z.url().nullable(),
