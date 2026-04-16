@@ -70,9 +70,3 @@ Inside the directory, you can run several commands:
 ## 📝 Content Management
 
 To update the content of the portfolio, navigate to the `src/content/` directory. You will find different folders for each section of the portfolio (e.g., `personal`, `projects`, `skills`, `work`). Update the corresponding JSON files for English (`en.json`) and Spanish (`es.json`) to reflect your latest information.
-
-## 🤝 Contact
-
-- **Email:** hectorjuniorrosario22@gmail.com
-- **LinkedIn:** [https://linkedin.com/in/hector-rosario](https://linkedin.com/in/hector-rosario)
-- **GitHub:** [https://github.com/hectorrosario22](https://github.com/hectorrosario22)
