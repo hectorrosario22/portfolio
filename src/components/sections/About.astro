@@ -1,0 +1,98 @@
+---
+import { Icon } from "astro-icon/components";
+import { getEntry } from "astro:content";
+import type { Lang } from "../../i18n/ui";
+import { useTranslations } from "../../i18n/utils";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const personal = await getEntry("personal", lang);
+if (!personal) throw new Error(`Missing personal entry for ${lang}`);
+const p = personal.data;
+const cvHref = `/resumes/cv-${lang}.pdf`;
+---
+
+<section id="about" class="section bg-secondary-50 dark:bg-secondary-800/30 relative overflow-hidden">
+  <div class="absolute inset-0 opacity-5 pointer-events-none">
+    <div class="absolute top-10 right-10 w-64 h-64 bg-primary-200 rounded-full mix-blend-multiply filter blur-xl"></div>
+    <div class="absolute bottom-10 left-10 w-64 h-64 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl"></div>
+  </div>
+
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <h2 class="section-title">{t("about.title")}</h2>
+    <p class="section-subtitle">{t("about.subtitle")}</p>
+
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+      <div class="order-2 lg:order-1 animate-slide-up">
+        <div class="relative">
+          <div class="relative rounded-2xl overflow-hidden shadow-2xl">
+            <img
+              src="/images/about/me.webp"
+              alt={`Portrait of ${p.name}, ${p.title}`}
+              loading="lazy"
+              class="w-full h-auto object-cover transition-transform duration-700 hover:scale-105"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+          </div>
+          <div class="absolute -bottom-6 -left-6 w-24 h-24 bg-gradient-to-br from-primary-500 to-primary-600 rounded-2xl -z-10 shadow-lg"></div>
+          <div class="absolute -top-6 -right-6 w-24 h-24 border-4 border-primary-500 rounded-2xl -z-10"></div>
+        </div>
+      </div>
+
+      <div class="order-1 lg:order-2 animate-slide-down">
+        <h3 class="text-3xl font-bold text-secondary-900 dark:text-white mb-6">
+          {t("about.whoAmI")}
+        </h3>
+        <p class="text-lg text-secondary-700 dark:text-secondary-300 mb-8 leading-relaxed">
+          {p.bio.long}
+        </p>
+
+        <div class="grid grid-cols-1 gap-4 mb-8">
+          {
+            [
+              { icon: "fa6-solid:envelope", label: t("about.email"), value: p.email },
+              { icon: "fa6-solid:globe", label: t("about.location"), value: p.location },
+              { icon: "fa6-solid:graduation-cap", label: t("about.education"), value: p.education },
+              { icon: "fa6-solid:briefcase", label: t("about.experience"), value: p.experience },
+            ].map((info) => (
+              <div class="card p-4 hover:scale-105 transition-all duration-300">
+                <div class="flex items-start">
+                  <div class="w-10 h-10 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center mr-3 flex-shrink-0">
+                    <Icon name={info.icon} class="text-primary-600 dark:text-primary-400 w-5 h-5" />
+                  </div>
+                  <div class="min-w-0 flex-1">
+                    <h4 class="font-bold text-secondary-900 dark:text-white mb-2 text-base">
+                      {info.label}
+                    </h4>
+                    <p class="text-secondary-600 dark:text-secondary-400 text-sm leading-relaxed break-all">
+                      {info.value}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+
+        <div class="flex flex-wrap gap-4">
+          <a
+            href={cvHref}
+            download={`CV-Hector-Rosario-${lang.toUpperCase()}.pdf`}
+            class="btn btn-primary"
+          >
+            {t("experience.downloadCV")}
+            <Icon name="fa6-solid:download" class="ml-2 w-4 h-4" />
+          </a>
+          <a href="#experience" class="btn btn-outline">
+            {t("experience.title")}
+            <Icon name="fa6-solid:briefcase" class="ml-2 w-4 h-4" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

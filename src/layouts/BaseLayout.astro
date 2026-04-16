@@ -1,0 +1,60 @@
+---
+import "../styles/global.css";
+import type { Lang } from "../i18n/ui";
+import { otherLang } from "../i18n/utils";
+
+interface Props {
+  lang: Lang;
+  title: string;
+  description: string;
+}
+
+const { lang, title, description } = Astro.props;
+const alt = otherLang(lang);
+const canonical = new URL(Astro.url.pathname, Astro.site).toString();
+const altHref = new URL(`/${alt}/`, Astro.site).toString();
+---
+
+<!doctype html>
+<html lang={lang} class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#3b82f6" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang={lang} href={canonical} />
+    <link rel="alternate" hreflang={alt} href={altHref} />
+    <link rel="alternate" hreflang="x-default" href={new URL(`/en/`, Astro.site).toString()} />
+
+    <title>{title}</title>
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={lang === "es" ? "es_DO" : "en_US"} />
+    <meta property="og:locale:alternate" content={alt === "es" ? "es_DO" : "en_US"} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <script is:inline>
+      (function () {
+        try {
+          const saved = localStorage.getItem("theme");
+          const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+          const dark = saved ? saved === "dark" : prefersDark;
+          if (dark) document.documentElement.classList.add("dark");
+        } catch (_) {}
+      })();
+    </script>
+  </head>
+  <body class="min-h-screen bg-secondary-50 dark:bg-secondary-900 transition-all duration-300">
+    <a href="#main-content" class="skip-to-content">Skip to main content</a>
+    <slot />
+  </body>
+</html>

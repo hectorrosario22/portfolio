@@ -1,0 +1,32 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Navbar from "../../components/Navbar.astro";
+import Footer from "../../components/Footer.astro";
+import Hero from "../../components/sections/Hero.astro";
+import About from "../../components/sections/About.astro";
+import Experience from "../../components/sections/Experience.astro";
+import Skills from "../../components/sections/Skills.astro";
+import Projects from "../../components/sections/Projects.astro";
+import ScrollToTop from "../../components/islands/ScrollToTop.svelte";
+import { useTranslations } from "../../i18n/utils";
+
+const lang = "en" as const;
+const t = useTranslations(lang);
+---
+
+<BaseLayout
+  lang={lang}
+  title="Hector Rosario — .NET Backend Developer"
+  description="Backend developer with 7+ years of experience in .NET and cloud technologies (Azure, AWS), focused on scalable solutions, performance optimization, and process automation."
+>
+  <Navbar lang={lang} />
+  <main id="main-content" class="relative" role="main">
+    <Hero lang={lang} />
+    <About lang={lang} />
+    <Experience lang={lang} />
+    <Skills lang={lang} />
+    <Projects lang={lang} />
+  </main>
+  <Footer lang={lang} />
+  <ScrollToTop client:idle ariaLabel={t("aria.scrollToTop")} />
+</BaseLayout>

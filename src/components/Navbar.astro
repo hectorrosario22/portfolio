@@ -1,0 +1,110 @@
+---
+import { Icon } from "astro-icon/components";
+import type { Lang } from "../i18n/ui";
+import { useTranslations, otherLang, localizedPath } from "../i18n/utils";
+import ThemeToggle from "./islands/ThemeToggle.svelte";
+import MobileMenu from "./islands/MobileMenu.svelte";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const alt = otherLang(lang);
+
+const navItems = [
+  { href: "#home", label: t("nav.home") },
+  { href: "#about", label: t("nav.about") },
+  { href: "#experience", label: t("nav.experience") },
+  { href: "#skills", label: t("nav.skills") },
+  { href: "#projects", label: t("nav.projects") },
+];
+
+const otherLangHref = localizedPath(alt);
+---
+
+<nav
+  id="site-nav"
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent"
+>
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16 lg:h-20">
+      <div class="flex items-center">
+        <a
+          href="#home"
+          class="text-2xl lg:text-3xl font-bold bg-gradient-to-r from-primary-600 to-primary-400 bg-clip-text text-transparent"
+        >
+          HR
+        </a>
+      </div>
+
+      <div class="hidden lg:flex items-center space-x-8">
+        {
+          navItems.map((item) => (
+            <a href={item.href} class="nav-link relative group">
+              {item.label}
+              <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-500 group-hover:w-full transition-all duration-300" />
+            </a>
+          ))
+        }
+
+        <a
+          href={otherLangHref}
+          aria-label={t("aria.toggleLanguage")}
+          class="flex items-center space-x-2 px-4 py-2 rounded-lg bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 hover:bg-primary-200 dark:hover:bg-primary-800/50 transition-all duration-300 font-medium"
+        >
+          <Icon name="fa6-solid:globe" class="w-4 h-4" />
+          <span class="text-sm font-semibold">{alt.toUpperCase()}</span>
+        </a>
+
+        <ThemeToggle client:load ariaLabel={t("aria.toggleDarkMode")} />
+      </div>
+
+      <div class="lg:hidden">
+        <MobileMenu
+          client:load
+          items={navItems}
+          ariaLabel={t("aria.toggleMenu")}
+          languageLabel={t("aria.toggleLanguage")}
+          otherLangHref={otherLangHref}
+          otherLangLabel={alt.toUpperCase()}
+          themeAriaLabel={t("aria.toggleDarkMode")}
+        />
+      </div>
+    </div>
+  </div>
+</nav>
+
+<script>
+  const nav = document.getElementById("site-nav");
+  if (nav) {
+    const onScroll = () => {
+      if (window.scrollY > 50) {
+        nav.classList.remove("bg-transparent");
+        nav.classList.add(
+          "bg-white/90",
+          "dark:bg-secondary-900/90",
+          "backdrop-blur-md",
+          "shadow-lg",
+          "border-b",
+          "border-secondary-200/50",
+          "dark:border-secondary-700/50",
+        );
+      } else {
+        nav.classList.add("bg-transparent");
+        nav.classList.remove(
+          "bg-white/90",
+          "dark:bg-secondary-900/90",
+          "backdrop-blur-md",
+          "shadow-lg",
+          "border-b",
+          "border-secondary-200/50",
+          "dark:border-secondary-700/50",
+        );
+      }
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+  }
+</script>
