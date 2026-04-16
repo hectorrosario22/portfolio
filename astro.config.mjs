@@ -4,9 +4,11 @@ import tailwind from "@astrojs/tailwind";
 import sitemap from "@astrojs/sitemap";
 import icon from "astro-icon";
 
+const siteUrl = process.env.CF_PAGES_URL || process.env.URL || "http://localhost:4321";
+
 // https://astro.build/config
 export default defineConfig({
-  site: "https://hectorrosario.pages.dev",
+  site: siteUrl,
   i18n: {
     locales: ["en", "es"],
     defaultLocale: "en",

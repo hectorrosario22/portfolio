@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://hectorrosario22.github.io/hectorrosario22/sitemap.xml
