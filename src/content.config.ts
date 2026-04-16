@@ -1,5 +1,6 @@
-import { defineCollection, z } from "astro:content";
+import { defineCollection } from "astro:content";
 import { glob } from "astro/loaders";
+import { z } from "zod";
 
 const personal = defineCollection({
   loader: glob({ pattern: "*.json", base: "./src/content/personal" }),
@@ -16,8 +17,8 @@ const personal = defineCollection({
       long: z.string(),
     }),
     social: z.object({
-      github: z.string().url(),
-      linkedin: z.string().url(),
+      github: z.url(),
+      linkedin: z.url(),
     }),
   }),
 });
@@ -57,8 +58,8 @@ const projectSchema = z.object({
   image: z.string(),
   category: z.array(z.string()),
   technologies: z.array(z.string()),
-  githubUrl: z.string().url().nullable(),
-  demoUrl: z.string().url().nullable(),
+  githubUrl: z.url().nullable(),
+  demoUrl: z.url().nullable(),
 });
 
 const projects = defineCollection({
