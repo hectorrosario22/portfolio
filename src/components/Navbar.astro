@@ -2,7 +2,6 @@
 import { Icon } from "astro-icon/components";
 import type { Lang } from "../i18n/ui";
 import { useTranslations, otherLang, localizedPath } from "../i18n/utils";
-import ThemeToggle from "./islands/ThemeToggle.svelte";
 import MobileMenu from "./islands/MobileMenu.svelte";
 
 interface Props {
@@ -26,39 +25,39 @@ const otherLangHref = localizedPath(alt);
 
 <nav
   id="site-nav"
-  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent"
+  class="fixed top-0 left-0 right-0 z-50 bg-surface/90 backdrop-blur-sm border-b border-wireframe transition-all duration-300"
 >
   <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between h-16 lg:h-20">
+    <div class="flex items-center justify-between h-16">
       <div class="flex items-center">
         <a
           href="#home"
-          class="text-2xl lg:text-3xl font-bold bg-gradient-to-r from-primary-600 to-primary-400 bg-clip-text text-transparent"
+          class="text-xl font-display font-bold text-white tracking-wider flex items-center gap-2"
         >
-          HR
+          <span class="text-accent">~/</span>HR
         </a>
       </div>
 
       <div class="hidden lg:flex items-center space-x-8">
         {
           navItems.map((item) => (
-            <a href={item.href} class="nav-link relative group">
+            <a href={item.href} class="nav-link font-mono text-xs uppercase tracking-widest text-secondary-400 hover:text-accent transition-colors duration-300 relative group">
+              <span class="opacity-0 group-hover:opacity-100 text-accent absolute -left-3 transition-opacity">_</span>
               {item.label}
-              <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-500 group-hover:w-full transition-all duration-300" />
             </a>
           ))
         }
 
+        <div class="h-4 w-px bg-wireframe"></div>
+
         <a
           href={otherLangHref}
           aria-label={t("aria.toggleLanguage")}
-          class="flex items-center space-x-2 px-4 py-2 rounded-lg bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 hover:bg-primary-200 dark:hover:bg-primary-800/50 transition-all duration-300 font-medium"
+          class="flex items-center space-x-2 px-3 py-1.5 rounded-none border border-wireframe text-secondary-400 hover:text-accent hover:border-accent transition-all duration-300"
         >
-          <Icon name="fa6-solid:globe" class="w-4 h-4" />
-          <span class="text-sm font-semibold">{alt.toUpperCase()}</span>
+          <Icon name="fa6-solid:globe" class="w-3 h-3" />
+          <span class="font-mono text-xs uppercase">{alt}</span>
         </a>
-
-        <ThemeToggle client:load ariaLabel={t("aria.toggleDarkMode")} />
       </div>
 
       <div class="lg:hidden">
@@ -77,34 +76,12 @@ const otherLangHref = localizedPath(alt);
 </nav>
 
 <script>
+  // Simplified scroll handler for Industrial Tech
   const nav = document.getElementById("site-nav");
   if (nav) {
     const onScroll = () => {
-      if (window.scrollY > 50) {
-        nav.classList.remove("bg-transparent");
-        nav.classList.add(
-          "bg-white/90",
-          "dark:bg-secondary-900/90",
-          "backdrop-blur-md",
-          "shadow-lg",
-          "border-b",
-          "border-secondary-200/50",
-          "dark:border-secondary-700/50",
-        );
-      } else {
-        nav.classList.add("bg-transparent");
-        nav.classList.remove(
-          "bg-white/90",
-          "dark:bg-secondary-900/90",
-          "backdrop-blur-md",
-          "shadow-lg",
-          "border-b",
-          "border-secondary-200/50",
-          "dark:border-secondary-700/50",
-        );
-      }
+      // Logic could animate border color if needed
     };
     window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
   }
 </script>

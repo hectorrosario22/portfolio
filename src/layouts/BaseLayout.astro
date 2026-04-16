@@ -16,7 +16,7 @@ const altHref = new URL(`/${alt}/`, Astro.site).toString();
 ---
 
 <!doctype html>
-<html lang={lang} class="scroll-smooth">
+<html lang={lang} class="scroll-smooth dark">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -28,6 +28,11 @@ const altHref = new URL(`/${alt}/`, Astro.site).toString();
     <link rel="alternate" hreflang={lang} href={canonical} />
     <link rel="alternate" hreflang={alt} href={altHref} />
     <link rel="alternate" hreflang="x-default" href={new URL(`/en/`, Astro.site).toString()} />
+
+    <!-- Technical Webfonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <title>{title}</title>
 
@@ -43,18 +48,18 @@ const altHref = new URL(`/${alt}/`, Astro.site).toString();
     <meta name="twitter:description" content={description} />
 
     <script is:inline>
-      (function () {
-        try {
-          const saved = localStorage.getItem("theme");
-          const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-          const dark = saved ? saved === "dark" : prefersDark;
-          if (dark) document.documentElement.classList.add("dark");
-        } catch (_) {}
-      })();
+      // Force dark mode for the Industrial aesthetic
+      document.documentElement.classList.add("dark");
     </script>
   </head>
-  <body class="min-h-screen bg-secondary-50 dark:bg-secondary-900 transition-all duration-300">
-    <a href="#main-content" class="skip-to-content">Skip to main content</a>
+  <body class="min-h-screen bg-surface text-secondary-300 font-sans antialiased selection:bg-accent selection:text-white transition-all duration-300">
+    <!-- Industrial Noise Texture Overlay -->
+    <div class="fixed inset-0 z-[-10] opacity-[0.04] pointer-events-none" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E');"></div>
+    
+    <!-- Wireframe Grid Overlay -->
+    <div class="fixed inset-0 z-[-10] opacity-[0.02] pointer-events-none bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:p-4 focus:bg-surface focus:text-accent">Skip to main content</a>
     <slot />
   </body>
 </html>

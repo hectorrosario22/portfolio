@@ -73,6 +73,7 @@ export default defineConfig({
           "lightbulb",
           "arrow-up",
           "up-right-from-square",
+          "gear",
         ],
       },
     }),

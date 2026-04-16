@@ -12,112 +12,63 @@ const { lang } = Astro.props;
 const t = useTranslations(lang);
 const personal = await getEntry("personal", lang);
 if (!personal) throw new Error(`Missing personal entry for ${lang}`);
-const { name, email, location, social } = personal.data;
-const currentYear = new Date().getFullYear();
+const { name, email, social } = personal.data;
 ---
 
-<footer class="bg-secondary-900 dark:bg-secondary-800 relative overflow-hidden">
-  <div class="absolute inset-0 opacity-10">
-    <div class="absolute top-10 left-10 w-64 h-64 bg-primary-500 rounded-full mix-blend-multiply filter blur-xl"></div>
-    <div class="absolute bottom-10 right-10 w-64 h-64 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl"></div>
-  </div>
-
-  <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-    <div class="py-16">
-      <div class="grid lg:grid-cols-3 gap-12 mb-12">
-        <div class="text-center lg:text-left">
-          <div class="flex items-center justify-center lg:justify-start mb-6">
-            <div class="w-16 h-16 bg-gradient-to-br from-primary-500 to-primary-600 rounded-2xl flex items-center justify-center mr-4 shadow-lg">
-              <span class="text-2xl font-bold text-white">HR</span>
-            </div>
-            <div>
-              <h3 class="text-2xl font-bold text-white mb-1">{name}</h3>
-              <p class="text-secondary-400 text-sm">{t("footer.tagline")}</p>
-            </div>
-          </div>
-          <p class="text-secondary-400 leading-relaxed max-w-md mx-auto lg:mx-0">
-            {t("footer.description")}
-          </p>
+<footer class="bg-surface border-t border-wireframe relative z-10 w-full overflow-hidden">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="py-16 border-b border-wireframe grid lg:grid-cols-4 gap-12">
+        
+      <div class="col-span-1 lg:col-span-2">
+        <div class="flex items-center mb-6">
+          <span class="text-accent font-mono mr-3 text-lg">SYS_ID:</span>
+          <h3 class="text-2xl font-display font-bold text-white uppercase tracking-widest">{name}</h3>
         </div>
-
-        <div class="text-center lg:text-left">
-          <h4 class="text-xl font-bold text-white mb-6">{t("footer.quickLinks")}</h4>
-          <div class="space-y-3">
-            <a href="#about" class="block text-secondary-400 hover:text-primary-400 transition-colors duration-300">{t("nav.about")}</a>
-            <a href="#experience" class="block text-secondary-400 hover:text-primary-400 transition-colors duration-300">{t("nav.experience")}</a>
-            <a href="#skills" class="block text-secondary-400 hover:text-primary-400 transition-colors duration-300">{t("nav.skills")}</a>
-            <a href="#projects" class="block text-secondary-400 hover:text-primary-400 transition-colors duration-300">{t("nav.projects")}</a>
-          </div>
-        </div>
-
-        <div class="text-center lg:text-left">
-          <h4 class="text-xl font-bold text-white mb-6">{t("footer.contact")}</h4>
-          <div class="space-y-4">
-            <div class="flex items-center justify-center lg:justify-start">
-              <div class="w-10 h-10 bg-primary-500/20 rounded-lg flex items-center justify-center mr-3">
-                <Icon name="fa6-solid:envelope" class="text-primary-400 w-5 h-5" />
-              </div>
-              <div class="text-left">
-                <p class="text-secondary-400 text-sm">{t("about.email")}</p>
-                <p class="text-white font-medium break-all">{email}</p>
-              </div>
-            </div>
-            <div class="flex items-center justify-center lg:justify-start">
-              <div class="w-10 h-10 bg-primary-500/20 rounded-lg flex items-center justify-center mr-3">
-                <Icon name="fa6-solid:globe" class="text-primary-400 w-5 h-5" />
-              </div>
-              <div class="text-left">
-                <p class="text-secondary-400 text-sm">{t("about.location")}</p>
-                <p class="text-white font-medium">{location}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="border-t border-secondary-700 pt-8">
-        <div class="flex justify-center">
-          <div class="flex space-x-6">
-            <a
-              href={social.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="w-12 h-12 bg-secondary-800 hover:bg-primary-500 rounded-xl flex items-center justify-center transition-all duration-300 transform hover:scale-110 hover:shadow-lg"
-              aria-label="GitHub"
-            >
-              <Icon name="fa6-brands:github" class="text-white w-5 h-5" />
-            </a>
-            <a
-              href={social.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="w-12 h-12 bg-secondary-800 hover:bg-primary-500 rounded-xl flex items-center justify-center transition-all duration-300 transform hover:scale-110 hover:shadow-lg"
-              aria-label="LinkedIn"
-            >
-              <Icon name="fa6-brands:linkedin" class="text-white w-5 h-5" />
-            </a>
-            <a
-              href={`mailto:${email}`}
-              class="w-12 h-12 bg-secondary-800 hover:bg-primary-500 rounded-xl flex items-center justify-center transition-all duration-300 transform hover:scale-110 hover:shadow-lg"
-              aria-label="Email"
-            >
-              <Icon name="fa6-solid:envelope" class="text-white w-5 h-5" />
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="border-t border-secondary-700 pt-8 mt-8 text-center">
-        <p class="text-secondary-400 text-sm">
-          © {currentYear} {name}. {t("footer.rightsReserved")}
+        <p class="font-mono text-sm leading-relaxed text-secondary-500 max-w-md mb-8">
+          // {t("footer.description")}
         </p>
-        <p class="text-secondary-500 text-xs mt-2">
-          {t("footer.builtWith")}
-          <span class="text-primary-400">Astro</span>,
-          <span class="text-primary-400">Svelte</span>,
-          <span class="text-primary-400">Tailwind CSS</span>
-        </p>
+        <div class="flex space-x-4">
+          <a href={social.github} target="_blank" rel="noopener noreferrer" class="text-secondary-500 hover:text-accent hover:bg-accent/10 transition-colors p-3 border border-wireframe rounded-none">
+            <Icon name="fa6-brands:github" class="w-5 h-5" />
+          </a>
+          <a href={social.linkedin} target="_blank" rel="noopener noreferrer" class="text-secondary-500 hover:text-accent hover:bg-accent/10 transition-colors p-3 border border-wireframe rounded-none">
+            <Icon name="fa6-brands:linkedin" class="w-5 h-5" />
+          </a>
+          <a href={`mailto:${email}`} class="text-secondary-500 hover:text-accent hover:bg-accent/10 transition-colors p-3 border border-wireframe rounded-none">
+            <Icon name="fa6-solid:envelope" class="w-5 h-5" />
+          </a>
+        </div>
       </div>
+
+      <div class="font-mono text-sm">
+        <p class="text-white mb-6 uppercase tracking-widest border-b border-wireframe pb-2 inline-block font-bold">DIRECTORY</p>
+        <ul class="space-y-4 text-secondary-500">
+          <li><a href="#about" class="hover:text-accent transition-colors">./{t("nav.about")}</a></li>
+          <li><a href="#experience" class="hover:text-accent transition-colors">./{t("nav.experience")}</a></li>
+          <li><a href="#skills" class="hover:text-accent transition-colors">./{t("nav.skills")}</a></li>
+          <li><a href="#projects" class="hover:text-accent transition-colors">./{t("nav.projects")}</a></li>
+        </ul>
+      </div>
+
+      <div class="font-mono text-sm text-secondary-500 border border-wireframe bg-[#121214] p-5 h-max relative group">
+        <div class="absolute top-0 right-0 w-2 h-2 bg-accent/50 group-hover:bg-accent transition-colors"></div>
+        <p class="text-accent mb-4 font-bold border-b border-wireframe pb-2">SERVER_STATUS</p>
+        <div class="space-y-2">
+          <p class="text-white flex justify-between">UPTIME: <span class="text-secondary-500">99.99%</span></p>
+          <p class="text-white flex justify-between">REGION: <span class="text-secondary-500">{personal.data.location}</span></p>
+          <p class="text-white flex justify-between">SYS_VER: <span class="text-secondary-500">2.0.0</span></p>
+          <p class="text-white flex justify-between mt-4">PING: <span class="text-accent animate-pulse">12ms</span></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="py-8 flex flex-col md:flex-row justify-between items-center font-mono text-xs text-secondary-600">
+      <p>
+        © {new Date().getFullYear()} {name}. // {t("footer.rightsReserved")}
+      </p>
+      <p class="mt-4 md:mt-0">
+        [ BUILD: <span class="text-accent">ASTRO</span> + <span class="text-accent">TAILWIND</span> ]
+      </p>
     </div>
   </div>
 </footer>
