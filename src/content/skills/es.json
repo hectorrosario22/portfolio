@@ -1,0 +1,46 @@
+{
+  "categories": [
+    {
+      "name": "Desarrollo Backend",
+      "icon": "fa6-solid:server",
+      "skills": [
+        { "name": "C#", "icon": "fa6-brands:microsoft" },
+        { "name": ".NET Core", "icon": "fa6-solid:code" },
+        { "name": "ASP.NET Web API", "icon": "fa6-solid:code" },
+        { "name": "Entity Framework", "icon": "fa6-solid:database" },
+        { "name": "SQL Server", "icon": "fa6-solid:database" },
+        { "name": "REST API Design", "icon": "fa6-solid:server" }
+      ]
+    },
+    {
+      "name": "Nube y DevOps",
+      "icon": "fa6-solid:cloud",
+      "skills": [
+        { "name": "Azure", "icon": "fa6-brands:microsoft" },
+        { "name": "Docker", "icon": "fa6-brands:docker" },
+        { "name": "CI/CD", "icon": "fa6-solid:code-branch" },
+        { "name": "Git", "icon": "fa6-brands:git-alt" }
+      ]
+    },
+    {
+      "name": "Arquitectura",
+      "icon": "fa6-solid:diagram-project",
+      "skills": [
+        { "name": "Microservicios", "icon": "fa6-solid:server" },
+        { "name": "Diseño Dirigido por Dominio", "icon": "fa6-solid:code" },
+        { "name": "Arquitectura Limpia", "icon": "fa6-solid:code" },
+        { "name": "Arquitectura Orientada a Eventos", "icon": "fa6-solid:code" }
+      ]
+    },
+    {
+      "name": "Frontend",
+      "icon": "fa6-solid:laptop-code",
+      "skills": [
+        { "name": "HTML5", "icon": "fa6-brands:html5" },
+        { "name": "CSS3", "icon": "fa6-brands:css3-alt" },
+        { "name": "JavaScript", "icon": "fa6-brands:js" },
+        { "name": "Vue.js", "icon": "fa6-brands:vuejs" }
+      ]
+    }
+  ]
+}

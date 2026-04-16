@@ -1,0 +1,22 @@
+{
+  "name": "Héctor Rosario",
+  "title": "Desarrollador Backend .NET",
+  "email": "hectorjuniorrosario22@gmail.com",
+  "location": "Santo Domingo, República Dominicana",
+  "education": "Técnico en Diseño y Desarrollo de Aplicaciones",
+  "experience": "7+ años en desarrollo .NET",
+  "interests": [
+    "Computación en la Nube",
+    "Microservicios",
+    "Arquitectura de Software",
+    "DevOps"
+  ],
+  "bio": {
+    "short": "Desarrollador backend con más de 7 años de experiencia en .NET y tecnologías en la nube (Azure, AWS), enfocado en soluciones escalables, optimización de rendimiento y automatización de procesos.",
+    "long": "Desarrollador backend experimentado con más de siete años trabajando con .NET y tecnologías en la nube como Azure y AWS. Apasionado por diseñar soluciones escalables y optimizar el rendimiento de sistemas para mejorar la eficiencia y mantenibilidad. Historial comprobado colaborando en entornos dinámicos, liderando proyectos y automatizando procesos. Buscando abordar desafíos complejos y entregar soluciones innovadoras impulsadas por valor."
+  },
+  "social": {
+    "github": "https://github.com/hectorrosario22",
+    "linkedin": "https://linkedin.com/in/hector-rosario"
+  }
+}

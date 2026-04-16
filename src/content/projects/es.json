@@ -1,0 +1,18 @@
+{
+  "categories": [
+    { "id": "all", "name": "Todos" },
+    { "id": "cli", "name": "CLI" }
+  ],
+  "items": [
+    {
+      "id": 1,
+      "title": "Rastreador de Gastos",
+      "description": "Una aplicación de línea de comandos construida con .NET 9 y Cocona para gestionar gastos personales. Soporta categorización, exportación CSV, seguimiento de presupuesto y persistencia local JSON.",
+      "image": "/images/projects/expense-tracker.webp",
+      "category": ["cli"],
+      "technologies": ["C#", ".NET 9", "Cocona", "JSON", "CSV"],
+      "githubUrl": "https://github.com/hectorrosario22/ExpenseTracker",
+      "demoUrl": null
+    }
+  ]
+}

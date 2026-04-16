@@ -1,0 +1,22 @@
+{
+  "name": "Hector Rosario",
+  "title": ".NET Backend Developer",
+  "email": "hectorjuniorrosario22@gmail.com",
+  "location": "Santo Domingo, Dominican Republic",
+  "education": "Technical Degree in Application Design and Development",
+  "experience": "7+ years in .NET development",
+  "interests": [
+    "Cloud Computing",
+    "Microservices",
+    "Software Architecture",
+    "DevOps"
+  ],
+  "bio": {
+    "short": "Backend developer with 7+ years of experience in .NET and cloud technologies (Azure, AWS), focused on scalable solutions, performance optimization, and process automation.",
+    "long": "Experienced backend developer with over seven years working with .NET and cloud technologies such as Azure and AWS. Passionate about designing scalable solutions and optimizing system performance to enhance efficiency and maintainability. Proven track record collaborating in fast-paced environments, leading projects, and automating processes. Seeking to tackle complex challenges and deliver innovative value-driven solutions."
+  },
+  "social": {
+    "github": "https://github.com/hectorrosario22",
+    "linkedin": "https://linkedin.com/in/hector-rosario"
+  }
+}

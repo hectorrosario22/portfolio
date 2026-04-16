@@ -1,0 +1,95 @@
+{
+  "items": [
+    {
+      "id": 1,
+      "title": "Senior Application Development Analyst",
+      "company": "Dirección General de Aduanas",
+      "period": "September 2019 - Present",
+      "location": "Santo Domingo, Dominican Republic",
+      "description": [
+        "Led the development of an internal applications portal, increasing team productivity by 35% and optimizing the management of key tools",
+        "Improved database performance, reducing response times from 15s to 1s through SQL query optimization",
+        "Implemented CI/CD with Azure DevOps, automating deployments and enhancing system stability"
+      ],
+      "technologies": [
+        "C#",
+        ".NET Core",
+        "ASP.NET Core",
+        "Entity Framework Core",
+        "Microservices",
+        "Azure",
+        "SQL Server",
+        "JavaScript"
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Full Stack Developer",
+      "company": "Ensitech",
+      "period": "May 2024 - April 2025",
+      "location": "Mexico City, Mexico",
+      "description": [
+        "Implemented a scalable notification module, integrating SendGrid, C3ntro, WhatsApp API, and SignalR, enhancing communication within the platform",
+        "Optimized the system architecture, reducing development time by 40% and enabling integration across different areas",
+        "Worked with Azure Functions and Azure Service Bus, ensuring a more flexible and scalable cloud architecture"
+      ],
+      "technologies": [
+        "C#",
+        ".NET Core",
+        "ASP.NET Core",
+        "SQL Server",
+        "Entity Framework Core",
+        "SignalR",
+        "Azure Functions",
+        "Azure Service Bus",
+        "SendGrid",
+        "C3ntro",
+        "React",
+        "JavaScript",
+        "TypeScript"
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Junior Application Development Analyst",
+      "company": "Dirección General de Aduanas",
+      "period": "June 2018 - August 2019",
+      "location": "Santo Domingo, Dominican Republic",
+      "description": [
+        "Developed an internal application for request management, reducing approval times by 50% and improving access to key information",
+        "Automated workflow processes, optimizing operational load and task execution efficiency",
+        "Collaborated with different teams to integrate software solutions and ensure system interoperability"
+      ],
+      "technologies": [
+        "C#",
+        ".NET Core",
+        "ASP.NET Core",
+        "Entity Framework Core",
+        "Microservices",
+        "Azure",
+        "SQL Server",
+        "JavaScript"
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Web Developer",
+      "company": "Excellent Integrity Solutions",
+      "period": "March 2017 - June 2018",
+      "location": "Santo Domingo, Dominican Republic",
+      "description": [
+        "Enhanced the performance of the PagaTodo platform, reducing loading times by 30% through system structure improvements",
+        "Developed and integrated enhancements in payment gateways and authentication, increasing system security and reliability"
+      ],
+      "technologies": [
+        "C#",
+        ".NET Framework",
+        "ASP.NET MVC",
+        "SQL Server",
+        "MongoDB",
+        "Entity Framework",
+        "JavaScript"
+      ]
+    }
+  ]
+}

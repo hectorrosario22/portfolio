@@ -1,0 +1,95 @@
+{
+  "items": [
+    {
+      "id": 1,
+      "title": "Analista Senior de Desarrollo de Aplicaciones",
+      "company": "Dirección General de Aduanas",
+      "period": "Septiembre 2019 - Presente",
+      "location": "Santo Domingo, República Dominicana",
+      "description": [
+        "Lideré el desarrollo de un portal de aplicaciones internas, aumentando la productividad del equipo en un 35% y optimizando la gestión de herramientas clave",
+        "Mejoré el rendimiento de la base de datos, reduciendo los tiempos de respuesta de 15s a 1s mediante optimización de consultas SQL",
+        "Implementé CI/CD con Azure DevOps, automatizando despliegues y mejorando la estabilidad del sistema"
+      ],
+      "technologies": [
+        "C#",
+        ".NET Core",
+        "ASP.NET Core",
+        "Entity Framework Core",
+        "Microservices",
+        "Azure",
+        "SQL Server",
+        "JavaScript"
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Desarrollador Full Stack",
+      "company": "Ensitech",
+      "period": "Mayo 2024 - Abril 2025",
+      "location": "Ciudad de México, México",
+      "description": [
+        "Implementé un módulo de notificaciones escalable, integrando SendGrid, C3ntro, WhatsApp API y SignalR, mejorando la comunicación dentro de la plataforma",
+        "Optimicé la arquitectura del sistema, reduciendo el tiempo de desarrollo en un 40% y permitiendo la integración entre diferentes áreas",
+        "Trabajé con Azure Functions y Azure Service Bus, asegurando una arquitectura en la nube más flexible y escalable"
+      ],
+      "technologies": [
+        "C#",
+        ".NET Core",
+        "ASP.NET Core",
+        "SQL Server",
+        "Entity Framework Core",
+        "SignalR",
+        "Azure Functions",
+        "Azure Service Bus",
+        "SendGrid",
+        "C3ntro",
+        "React",
+        "JavaScript",
+        "TypeScript"
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Analista Junior de Desarrollo de Aplicaciones",
+      "company": "Dirección General de Aduanas",
+      "period": "Junio 2018 - Agosto 2019",
+      "location": "Santo Domingo, República Dominicana",
+      "description": [
+        "Desarrollé una aplicación interna para gestión de solicitudes, reduciendo los tiempos de aprobación en un 50% y mejorando el acceso a información clave",
+        "Automaticé procesos de flujo de trabajo, optimizando la carga operativa y la eficiencia de ejecución de tareas",
+        "Colaboré con diferentes equipos para integrar soluciones de software y asegurar la interoperabilidad del sistema"
+      ],
+      "technologies": [
+        "C#",
+        ".NET Core",
+        "ASP.NET Core",
+        "Entity Framework Core",
+        "Microservices",
+        "Azure",
+        "SQL Server",
+        "JavaScript"
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Desarrollador Web",
+      "company": "Excellent Integrity Solutions",
+      "period": "Marzo 2017 - Junio 2018",
+      "location": "Santo Domingo, República Dominicana",
+      "description": [
+        "Mejoré el rendimiento de la plataforma PagaTodo, reduciendo los tiempos de carga en un 30% mediante mejoras en la estructura del sistema",
+        "Desarrollé e integré mejoras en pasarelas de pago y autenticación, aumentando la seguridad y confiabilidad del sistema"
+      ],
+      "technologies": [
+        "C#",
+        ".NET Framework",
+        "ASP.NET MVC",
+        "SQL Server",
+        "MongoDB",
+        "Entity Framework",
+        "JavaScript"
+      ]
+    }
+  ]
+}
