@@ -13,7 +13,6 @@ const t = useTranslations(lang);
 const personal = await getEntry("personal", lang);
 if (!personal) throw new Error(`Missing personal entry for ${lang}`);
 const p = personal.data;
-const cvHref = `/resumes/cv-${lang}.pdf`;
 ---
 
 <section id="about" class="py-24 border-b border-wireframe relative bg-[#0c0c0e]">
@@ -81,16 +80,7 @@ const cvHref = `/resumes/cv-${lang}.pdf`;
           }
         </div>
 
-        <div class="flex flex-wrap gap-4 font-mono text-sm">
-          <a
-            href={cvHref}
-            download={`CV-Hector-Rosario-${lang.toUpperCase()}.pdf`}
-            class="px-6 py-3 border border-wireframe text-white hover:bg-white hover:text-black transition-colors flex items-center gap-2 uppercase tracking-widest"
-          >
-            {t("experience.downloadCV")}
-            <Icon name="fa6-solid:download" class="w-4 h-4" />
-          </a>
-        </div>
+
       </div>
     </div>
   </div>
