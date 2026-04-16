@@ -12,7 +12,10 @@ interface Props {
 const { lang, title, description } = Astro.props;
 const alt = otherLang(lang);
 const canonical = new URL(Astro.url.pathname, Astro.site).toString();
-const altHref = new URL(`/${alt}/`, Astro.site).toString();
+const altHref = new URL(
+  Astro.url.pathname.replace(new RegExp(`^\/${lang}(\/|$)`), `/${alt}$1`) || `/${alt}/`,
+  Astro.site
+).toString();
 ---
 
 <!doctype html>
@@ -29,10 +32,23 @@ const altHref = new URL(`/${alt}/`, Astro.site).toString();
     <link rel="alternate" hreflang={alt} href={altHref} />
     <link rel="alternate" hreflang="x-default" href={new URL(`/en/`, Astro.site).toString()} />
 
-    <!-- Technical Webfonts -->
+    <!-- Technical Webfonts — non-render-blocking via media=print swap -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link
+      id="gfonts"
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      media="print"
+    />
+    <script is:inline>
+      // Switch font stylesheet from print→all after parse — avoids render-blocking
+      const gf = document.getElementById("gfonts");
+      if (gf) gf.media = "all";
+    </script>
+    <noscript>
+      <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    </noscript>
 
     <title>{title}</title>
 

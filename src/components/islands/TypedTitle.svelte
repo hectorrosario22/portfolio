@@ -39,4 +39,4 @@
   });
 </script>
 
-<span class="typing-text inline-block min-h-[1.2em]">{text}</span><span class="animate-pulse ml-2">|</span>
+<span class="typing-text inline-block min-h-[1.2em]">{text}</span>

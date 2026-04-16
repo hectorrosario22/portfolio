@@ -76,12 +76,25 @@ const otherLangHref = localizedPath(alt);
 </nav>
 
 <script>
-  // Simplified scroll handler for Industrial Tech
-  const nav = document.getElementById("site-nav");
-  if (nav) {
-    const onScroll = () => {
-      // Logic could animate border color if needed
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-  }
+  // IntersectionObserver: marks the active nav section link
+  const sections = document.querySelectorAll<HTMLElement>("section[id]");
+  const navLinks = document.querySelectorAll<HTMLAnchorElement>("a.nav-link[href^='#']");
+
+  const setActive = (id: string) => {
+    navLinks.forEach((link) => {
+      const isActive = link.getAttribute("href") === `#${id}`;
+      link.setAttribute("aria-current", isActive ? "page" : "false");
+      link.classList.toggle("nav-link--active", isActive);
+    });
+  };
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      const visible = entries.find((e) => e.isIntersecting);
+      if (visible) setActive(visible.target.id);
+    },
+    { rootMargin: "-40% 0px -55% 0px", threshold: 0 }
+  );
+
+  sections.forEach((s) => observer.observe(s));
 </script>
