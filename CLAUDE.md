@@ -1,107 +1,50 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+Guidance for Claude Code when working in this repository.
 
-## Development Commands
+## Stack
 
-**Package Manager**: Use `pnpm` (version 10.10.0 as specified in packageManager field)
+- **Astro 5** (static output) with file-based routing and native i18n (`en`, `es`)
+- **Svelte 5** for the handful of interactive islands (theme toggle, mobile menu, typed title, scroll-to-top)
+- **Tailwind CSS 3** via `@astrojs/tailwind` (`applyBaseStyles: false`; base layer lives in `src/styles/global.css`)
+- **astro-icon** with FA6 (`fa6-solid`, `fa6-brands`) — only the icons explicitly listed in `astro.config.mjs` are bundled
+- **Content collections** (`src/content/*`) with zod schemas in `src/content/config.ts`; content is split per locale (`en.json`, `es.json`)
+- **@astrojs/sitemap** generates `sitemap-index.xml` with i18n hreflang alternates
+- Package manager: **pnpm** (version pinned via `packageManager` in `package.json`)
+
+## Commands
 
 ```bash
-# Development server
-pnpm dev
-
-# Build for production
-pnpm build
-
-# Type checking
-pnpm type-check
-
-# Linting (with auto-fix)
-pnpm lint
-
-# Format code
-pnpm format
-
-# Preview production build
-pnpm preview
+pnpm dev         # astro dev
+pnpm build       # astro check && astro build
+pnpm preview     # serve dist/
+pnpm astro check # type-check Astro + Svelte + TS
 ```
 
-## Project Architecture
+## Architecture
 
-This is a **Vue 3 + TypeScript portfolio website** built with:
-- **Vite** as build tool
-- **Vue Router 4** for routing (single-page app with HomeView)
-- **Vue I18n** for internationalization (English/Spanish)
-- **Tailwind CSS** with custom design system
-- **FontAwesome** icons
-- **Vue3 Smooth Scroll** for navigation
+- `src/pages/en/index.astro` and `src/pages/es/index.astro` compose the single-page layout. Root `/` is redirected to `/en/` via `astro.config.mjs` (`redirectToDefaultLocale: true`).
+- `src/layouts/BaseLayout.astro` owns `<head>` (SEO meta, canonical, hreflang, OG/Twitter) and injects an inline anti-FOUC script that applies the `dark` class before paint.
+- Sections live in `src/components/sections/` as pure `.astro` (static). Each receives `lang` as a prop and pulls content via `getEntry("<collection>", lang)`.
+- Interactive islands live in `src/components/islands/` as `.svelte` files:
+  - `ThemeToggle.svelte` — hydrated `client:load`; syncs with the inline FOUC script and `prefers-color-scheme`
+  - `MobileMenu.svelte` — hydrated `client:load`
+  - `TypedTitle.svelte` — hydrated `client:visible`
+  - `ScrollToTop.svelte` — hydrated `client:idle`
+- UI strings (nav, labels, aria) are in `src/i18n/ui.ts`; helpers in `src/i18n/utils.ts` (`useTranslations`, `otherLang`, `localizedPath`).
+- Long-form content (bio, experience, projects, skills, education, personal) lives in `src/content/<collection>/{en,es}.json` under zod-typed collections.
 
-### Key Architecture Patterns
+## Styling
 
-**Single Page Application**: All content is rendered in `App.vue` as sections rather than separate routes. The app uses a single `HomeView` component that imports all section components.
+- Design tokens (colors, animations, keyframes) are defined in `tailwind.config.mjs`.
+- Global CSS (base resets, component utilities, custom scrollbar, `scroll-padding-top` for anchor nav) is in `src/styles/global.css`.
 
-**Theme System**: 
-- Dark/light mode toggle managed in `App.vue`
-- Custom color palette defined in `tailwind.config.js` with primary/secondary color scales
-- CSS custom properties for consistent theming
-- Automatic system preference detection with localStorage persistence
+## Assets
 
-**Internationalization**:
-- Managed via Vue I18n with composable pattern
-- Locale files in `src/i18n/locales/` (en.ts, es.ts)
-- Data composition using `useI18n()` in data files (see `src/data/personal.ts`)
+- `public/images/` — section imagery
+- `public/resumes/cv-en.pdf`, `public/resumes/cv-es.pdf` — linked from About by locale
+- `public/favicon.svg`, `public/robots.txt`
 
-**Component Organization**:
-```
-src/components/
-├── layout/          # Navbar, Footer, ScrollToTop
-└── sections/        # HeroSection, AboutSection, etc.
-```
+## Deploy
 
-**Data Layer**:
-- Static data files in `src/data/` export composables that use i18n
-- TypeScript interfaces in `src/types/`
-- Personal information, projects, skills, and experience data
-
-### Styling Approach
-
-**Tailwind Configuration**:
-- Custom animations (fade-in, slide-up, slide-down, scale-in, float)
-- Extended color palette (primary/secondary with 50-900 scales)
-- Custom glass morphism utilities
-- Responsive design patterns
-
-**Animation System**:
-- Custom keyframes for entrance animations
-- Glassmorphism effects with backdrop-blur
-- Smooth transitions for theme changes
-- Custom scrollbar styling
-
-## Environment Variables
-
-Create `.env` file for local development:
-```
-VITE_BASE_URL=/
-```
-
-For GitHub Pages deployment, the workflow uses:
-```
-VITE_BASE_URL=/hectorrosario22/
-```
-
-## Static Assets
-
-- **Images**: Located in `public/images/` with organized subdirectories
-- **Resumes**: CV files in `public/resumes/` (cv-en.pdf, cv-es.pdf)
-- **Favicon**: SVG format in `public/favicon.svg`
-
-## Deployment
-
-The project auto-deploys to GitHub Pages via GitHub Actions when pushing to the `portfolio` branch. See `DEPLOYMENT.md` for details.
-
-## TypeScript Configuration
-
-Uses Vue 3 composition API with `<script setup>` syntax. TypeScript configuration split across:
-- `tsconfig.json` (references)
-- `tsconfig.app.json` (app-specific config)
-- `tsconfig.node.json` (build tools config)
+Cloudflare Pages via git integration. See `DEPLOYMENT.md`. No base-path prefix — site is served from the domain root.

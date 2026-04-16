@@ -1,55 +1,34 @@
 # Deployment Guide
 
-## GitHub Pages Deployment
+This site is built with Astro and deployed as a static site to **Cloudflare Pages**.
 
-This project uses GitHub Actions to automatically deploy to GitHub Pages when changes are pushed to the `portfolio` branch.
+## Cloudflare Pages Setup
 
-### Workflow Configuration
+1. Go to the Cloudflare dashboard → Workers & Pages → Create → Pages → Connect to Git.
+2. Select this repository and the branch you want to deploy (e.g. `portfolio` or `main`).
+3. Configure the build:
+   - **Framework preset**: Astro
+   - **Build command**: `pnpm build`
+   - **Build output directory**: `dist`
+   - **Root directory**: `/`
+4. Environment variables:
+   - `NODE_VERSION`: `22`
+   - `PNPM_VERSION`: `10.20.0` (or match `packageManager` in `package.json`)
+5. Save and deploy. Cloudflare will build on every push to the configured branch and create preview deploys for PRs.
 
-The deployment workflow is located at `.github/workflows/deploy.yml` and includes:
+No `VITE_BASE_URL` or base-path prefix is needed — Cloudflare serves from the domain root.
 
-- **Trigger**: Automatically runs on pushes to the `portfolio` branch
-- **Build**: Uses pnpm to install dependencies and build the project
-- **Deploy**: Automatically deploys to GitHub Pages
+## CI
 
-### Environment Variables
+`.github/workflows/deploy.yml` only runs type-check + build as a safety net on pushes and PRs. The actual deploy is handled by Cloudflare's git integration, not GitHub Actions.
 
-The workflow reads environment variables from the `.env` file:
-- `VITE_BASE_URL=/hectorrosario22/` - Base URL for GitHub Pages
+## Custom domain (optional)
 
-**Note**: The environment variables are read from the `.env` file in the repository.
+In the Cloudflare Pages project → Custom domains → add your domain. Cloudflare manages DNS and TLS automatically if the domain is on Cloudflare.
 
-### Node.js Version
+## Local preview
 
-The workflow uses the Node.js version specified in the `.node-version` file (currently Node.js 22).
-
-### Manual Deployment
-
-You can also trigger the deployment manually:
-1. Go to the "Actions" tab in your GitHub repository
-2. Select "Deploy to GitHub Pages" workflow
-3. Click "Run workflow" and select the `portfolio` branch
-
-### GitHub Pages Settings
-
-Make sure your repository has GitHub Pages enabled:
-1. Go to repository Settings > Pages
-2. Source should be set to "GitHub Actions"
-
-### Local Development
-
-For local development, you can create a `.env` file with:
+```bash
+pnpm build
+pnpm preview
 ```
-VITE_BASE_URL=/
-```
-
-This will allow the app to run locally without the GitHub Pages base path.
-
-### Environment Variables
-
-The `VITE_BASE_URL` environment variable is configured in the `.env` file:
-```
-VITE_BASE_URL=/hectorrosario22/
-```
-
-This ensures the same configuration is used for both local development and deployment. 
